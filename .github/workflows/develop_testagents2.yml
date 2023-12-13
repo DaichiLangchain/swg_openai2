@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'testAgents2'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_27590E7D2B444ACEB740D54D754C575C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DB362C12003B44F5BD637071C52B35BD }}
