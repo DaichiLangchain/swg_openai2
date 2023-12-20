@@ -58,21 +58,38 @@ AZURE_SEARCH_PERMITTED_GROUPS_COLUMN = os.environ.get("AZURE_SEARCH_PERMITTED_GR
 AZURE_SEARCH_STRICTNESS = os.environ.get("AZURE_SEARCH_STRICTNESS", SEARCH_STRICTNESS)
 
 # AOAI Integration Settings
-AZURE_OPENAI_RESOURCE = os.environ.get("AZURE_OPENAI_RESOURCE")
-AZURE_OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL")
-AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
-AZURE_OPENAI_TEMPERATURE = os.environ.get("AZURE_OPENAI_TEMPERATURE", 0)
-AZURE_OPENAI_TOP_P = os.environ.get("AZURE_OPENAI_TOP_P", 1.0)
-AZURE_OPENAI_MAX_TOKENS = os.environ.get("AZURE_OPENAI_MAX_TOKENS", 1000)
-AZURE_OPENAI_STOP_SEQUENCE = os.environ.get("AZURE_OPENAI_STOP_SEQUENCE")
-AZURE_OPENAI_SYSTEM_MESSAGE = os.environ.get("AZURE_OPENAI_SYSTEM_MESSAGE", "You are an AI assistant that helps people find information.")
-AZURE_OPENAI_PREVIEW_API_VERSION = os.environ.get("AZURE_OPENAI_PREVIEW_API_VERSION", "2023-08-01-preview")
-AZURE_OPENAI_STREAM = os.environ.get("AZURE_OPENAI_STREAM", "true")
-AZURE_OPENAI_MODEL_NAME = os.environ.get("AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo-16k") # Name of the model, e.g. 'gpt-35-turbo-16k' or 'gpt-4'
-AZURE_OPENAI_EMBEDDING_ENDPOINT = os.environ.get("AZURE_OPENAI_EMBEDDING_ENDPOINT")
-AZURE_OPENAI_EMBEDDING_KEY = os.environ.get("AZURE_OPENAI_EMBEDDING_KEY")
-AZURE_OPENAI_EMBEDDING_NAME = os.environ.get("AZURE_OPENAI_EMBEDDING_NAME", "")
+
+# AZURE_OPENAI_RESOURCE = os.environ.get("AZURE_OPENAI_RESOURCE")
+# AZURE_OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL")
+# AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
+# AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
+# AZURE_OPENAI_TEMPERATURE = os.environ.get("AZURE_OPENAI_TEMPERATURE", 0)
+# AZURE_OPENAI_TOP_P = os.environ.get("AZURE_OPENAI_TOP_P", 1.0)
+# AZURE_OPENAI_MAX_TOKENS = os.environ.get("AZURE_OPENAI_MAX_TOKENS", 1000)
+# AZURE_OPENAI_STOP_SEQUENCE = os.environ.get("AZURE_OPENAI_STOP_SEQUENCE")
+# AZURE_OPENAI_SYSTEM_MESSAGE = os.environ.get("AZURE_OPENAI_SYSTEM_MESSAGE", "You are an AI assistant that helps people find information.")
+# AZURE_OPENAI_PREVIEW_API_VERSION = os.environ.get("AZURE_OPENAI_PREVIEW_API_VERSION", "2023-08-01-preview")
+# AZURE_OPENAI_STREAM = os.environ.get("AZURE_OPENAI_STREAM", "true")
+# AZURE_OPENAI_MODEL_NAME = os.environ.get("AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo-16k") # Name of the model, e.g. 'gpt-35-turbo-16k' or 'gpt-4'
+# AZURE_OPENAI_EMBEDDING_ENDPOINT = os.environ.get("AZURE_OPENAI_EMBEDDING_ENDPOINT")
+# AZURE_OPENAI_EMBEDDING_KEY = os.environ.get("AZURE_OPENAI_EMBEDDING_KEY")
+# AZURE_OPENAI_EMBEDDING_NAME = os.environ.get("AZURE_OPENAI_EMBEDDING_NAME", "")
+
+OPENAI_RESOURCE = os.environ.get("AZURE_OPENAI_RESOURCE")
+OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL")
+OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
+OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
+OPENAI_TEMPERATURE = os.environ.get("AZURE_OPENAI_TEMPERATURE", 0)
+OPENAI_TOP_P = os.environ.get("AZURE_OPENAI_TOP_P", 1.0)
+OPENAI_MAX_TOKENS = os.environ.get("AZURE_OPENAI_MAX_TOKENS", 1000)
+OPENAI_STOP_SEQUENCE = os.environ.get("AZURE_OPENAI_STOP_SEQUENCE")
+OPENAI_SYSTEM_MESSAGE = os.environ.get("AZURE_OPENAI_SYSTEM_MESSAGE", "You are an AI assistant that helps people find information.")
+OPENAI_PREVIEW_API_VERSION = os.environ.get("AZURE_OPENAI_PREVIEW_API_VERSION", "2023-08-01-preview")
+OPENAI_STREAM = os.environ.get("AZURE_OPENAI_STREAM", "true")
+OPENAI_MODEL_NAME = os.environ.get("AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo-16k") # Name of the model, e.g. 'gpt-35-turbo-16k' or 'gpt-4'
+OPENAI_EMBEDDING_ENDPOINT = os.environ.get("AZURE_OPENAI_EMBEDDING_ENDPOINT")
+OPENAI_EMBEDDING_KEY = os.environ.get("AZURE_OPENAI_EMBEDDING_KEY")
+OPENAI_EMBEDDING_NAME = os.environ.get("AZURE_OPENAI_EMBEDDING_NAME", "")
 
 # CosmosDB Mongo vcore vector db Settings
 AZURE_COSMOSDB_MONGO_VCORE_CONNECTION_STRING = os.environ.get("AZURE_COSMOSDB_MONGO_VCORE_CONNECTION_STRING")  #This has to be secure string
@@ -89,7 +106,7 @@ AZURE_COSMOSDB_MONGO_VCORE_URL_COLUMN = os.environ.get("AZURE_COSMOSDB_MONGO_VCO
 AZURE_COSMOSDB_MONGO_VCORE_VECTOR_COLUMNS = os.environ.get("AZURE_COSMOSDB_MONGO_VCORE_VECTOR_COLUMNS")
 
 
-SHOULD_STREAM = True if AZURE_OPENAI_STREAM.lower() == "true" else False
+SHOULD_STREAM = True if OPENAI_STREAM.lower() == "true" else False
 
 # Chat History CosmosDB Integration Settings
 AZURE_COSMOSDB_DATABASE = os.environ.get("AZURE_COSMOSDB_DATABASE")
@@ -120,7 +137,7 @@ if AZURE_COSMOSDB_DATABASE and AZURE_COSMOSDB_ACCOUNT and AZURE_COSMOSDB_CONVERS
 
 
 def is_chat_model():
-    if 'gpt-4' in AZURE_OPENAI_MODEL_NAME.lower() or AZURE_OPENAI_MODEL_NAME.lower() in ['gpt-35-turbo-4k', 'gpt-35-turbo-16k']:
+    if 'gpt-4' in OPENAI_MODEL_NAME.lower() or OPENAI_MODEL_NAME.lower() in ['gpt-35-turbo-4k', 'gpt-35-turbo-16k']:
         return True
     return False
 
@@ -187,10 +204,10 @@ def prepare_body_headers_with_data(request):
 
     body = {
         "messages": request_messages,
-        "temperature": float(AZURE_OPENAI_TEMPERATURE),
-        "max_tokens": int(AZURE_OPENAI_MAX_TOKENS),
-        "top_p": float(AZURE_OPENAI_TOP_P),
-        "stop": AZURE_OPENAI_STOP_SEQUENCE.split("|") if AZURE_OPENAI_STOP_SEQUENCE else None,
+        "temperature": float(OPENAI_TEMPERATURE),
+        "max_tokens": int(OPENAI_MAX_TOKENS),
+        "top_p": float(OPENAI_TOP_P),
+        "stop": OPENAI_STOP_SEQUENCE.split("|") if OPENAI_STOP_SEQUENCE else None,
         "stream": SHOULD_STREAM,
         "dataSources": []
     }
@@ -233,7 +250,7 @@ def prepare_body_headers_with_data(request):
                     "topNDocuments": AZURE_SEARCH_TOP_K,
                     "queryType": query_type,
                     "semanticConfiguration": AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG if AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG else "",
-                    "roleInformation": AZURE_OPENAI_SYSTEM_MESSAGE,
+                    "roleInformation": OPENAI_SYSTEM_MESSAGE,
                     "filter": filter,
                     "strictness": int(AZURE_SEARCH_STRICTNESS)
                 }
@@ -261,18 +278,18 @@ def prepare_body_headers_with_data(request):
                     "topNDocuments": AZURE_COSMOSDB_MONGO_VCORE_TOP_K,
                     "strictness": int(AZURE_COSMOSDB_MONGO_VCORE_STRICTNESS),
                     "queryType": query_type,
-                    "roleInformation": AZURE_OPENAI_SYSTEM_MESSAGE
+                    "roleInformation": OPENAI_SYSTEM_MESSAGE
                 }
             })
     else:
         raise Exception(f"DATASOURCE_TYPE is not configured or unknown: {DATASOURCE_TYPE}")
 
     if "vector" in query_type.lower():
-        if AZURE_OPENAI_EMBEDDING_NAME:
-            body["dataSources"][0]["parameters"]["embeddingDeploymentName"] = AZURE_OPENAI_EMBEDDING_NAME
+        if OPENAI_EMBEDDING_NAME:
+            body["dataSources"][0]["parameters"]["embeddingDeploymentName"] = OPENAI_EMBEDDING_NAME
         else:
-            body["dataSources"][0]["parameters"]["embeddingEndpoint"] = AZURE_OPENAI_EMBEDDING_ENDPOINT
-            body["dataSources"][0]["parameters"]["embeddingKey"] = AZURE_OPENAI_EMBEDDING_KEY
+            body["dataSources"][0]["parameters"]["embeddingEndpoint"] = OPENAI_EMBEDDING_ENDPOINT
+            body["dataSources"][0]["parameters"]["embeddingKey"] = OPENAI_EMBEDDING_KEY
 
     if DEBUG_LOGGING:
         body_clean = copy.deepcopy(body)
@@ -287,7 +304,7 @@ def prepare_body_headers_with_data(request):
 
     headers = {
         'Content-Type': 'application/json',
-        'api-key': AZURE_OPENAI_KEY,
+        'api-key': OPENAI_KEY,
         "x-ms-useragent": "GitHubSampleWebApp/PublicAPI/3.0.0"
     }
 
@@ -311,7 +328,7 @@ def stream_with_data(body, headers, endpoint, history_metadata={}):
                     'history_metadata': history_metadata
                 }
                 if line:
-                    if AZURE_OPENAI_PREVIEW_API_VERSION == '2023-06-01-preview':
+                    if OPENAI_PREVIEW_API_VERSION == '2023-06-01-preview':
                         lineJson = json.loads(line.lstrip(b'data:').decode('utf-8'))
                     else:
                         try:
@@ -425,15 +442,15 @@ def formatApiResponseStreaming(rawResponse):
 
 def conversation_with_data(request_body):
     body, headers = prepare_body_headers_with_data(request)
-    base_url = AZURE_OPENAI_ENDPOINT if AZURE_OPENAI_ENDPOINT else f"https://{AZURE_OPENAI_RESOURCE}.openai.azure.com/"
-    endpoint = f"{base_url}openai/deployments/{AZURE_OPENAI_MODEL}/extensions/chat/completions?api-version={AZURE_OPENAI_PREVIEW_API_VERSION}"
+    base_url = OPENAI_ENDPOINT if OPENAI_ENDPOINT else f"https://{OPENAI_RESOURCE}.openai.azure.com/"
+    endpoint = f"{base_url}openai/deployments/{OPENAI_MODEL}/extensions/chat/completions?api-version={OPENAI_PREVIEW_API_VERSION}"
     history_metadata = request_body.get("history_metadata", {})
 
     if not SHOULD_STREAM:
         r = requests.post(endpoint, headers=headers, json=body)
         status_code = r.status_code
         r = r.json()
-        if AZURE_OPENAI_PREVIEW_API_VERSION == "2023-06-01-preview":
+        if OPENAI_PREVIEW_API_VERSION == "2023-06-01-preview":
             r['history_metadata'] = history_metadata
             return Response(format_as_ndjson(r), status=status_code)
         else:
@@ -472,15 +489,15 @@ def stream_without_data(response, history_metadata={}):
 
 def conversation_without_data(request_body):
     openai.api_type = "azure"
-    openai.api_base = AZURE_OPENAI_ENDPOINT if AZURE_OPENAI_ENDPOINT else f"https://{AZURE_OPENAI_RESOURCE}.openai.azure.com/"
+    openai.api_base = OPENAI_ENDPOINT if OPENAI_ENDPOINT else f"https://{OPENAI_RESOURCE}.openai.azure.com/"
     openai.api_version = "2023-08-01-preview"
-    openai.api_key = AZURE_OPENAI_KEY
+    openai.api_key = OPENAI_KEY
 
     request_messages = request_body["messages"]
     messages = [
         {
             "role": "system",
-            "content": AZURE_OPENAI_SYSTEM_MESSAGE
+            "content": OPENAI_SYSTEM_MESSAGE
         }
     ]
 
@@ -492,12 +509,12 @@ def conversation_without_data(request_body):
             })
 
     response = openai.ChatCompletion.create(
-        engine=AZURE_OPENAI_MODEL,
+        engine=OPENAI_MODEL,
         messages = messages,
-        temperature=float(AZURE_OPENAI_TEMPERATURE),
-        max_tokens=int(AZURE_OPENAI_MAX_TOKENS),
-        top_p=float(AZURE_OPENAI_TOP_P),
-        stop=AZURE_OPENAI_STOP_SEQUENCE.split("|") if AZURE_OPENAI_STOP_SEQUENCE else None,
+        temperature=float(OPENAI_TEMPERATURE),
+        max_tokens=int(OPENAI_MAX_TOKENS),
+        top_p=float(OPENAI_TOP_P),
+        stop=OPENAI_STOP_SEQUENCE.split("|") if OPENAI_STOP_SEQUENCE else None,
         stream=SHOULD_STREAM
     )
 
@@ -784,13 +801,13 @@ def generate_title(conversation_messages):
 
     try:
         ## Submit prompt to Chat Completions for response
-        base_url = AZURE_OPENAI_ENDPOINT if AZURE_OPENAI_ENDPOINT else f"https://{AZURE_OPENAI_RESOURCE}.openai.azure.com/"
+        base_url = OPENAI_ENDPOINT if OPENAI_ENDPOINT else f"https://{OPENAI_RESOURCE}.openai.azure.com/"
         openai.api_type = "azure"
         openai.api_base = base_url
         openai.api_version = "2023-03-15-preview"
-        openai.api_key = AZURE_OPENAI_KEY
+        openai.api_key = OPENAI_KEY
         completion = openai.ChatCompletion.create(    
-            engine=AZURE_OPENAI_MODEL,
+            engine=OPENAI_MODEL,
             messages=messages,
             temperature=1,
             max_tokens=64 
