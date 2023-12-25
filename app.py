@@ -76,20 +76,20 @@ AZURE_SEARCH_STRICTNESS = os.environ.get("AZURE_SEARCH_STRICTNESS", SEARCH_STRIC
 # AZURE_OPENAI_EMBEDDING_NAME = os.environ.get("AZURE_OPENAI_EMBEDDING_NAME", "")
 
 OPENAI_RESOURCE = os.environ.get("OPENAI_RESOURCE")
-OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL")
-OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
-OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
-OPENAI_TEMPERATURE = os.environ.get("AZURE_OPENAI_TEMPERATURE", 0)
-OPENAI_TOP_P = os.environ.get("AZURE_OPENAI_TOP_P", 1.0)
-OPENAI_MAX_TOKENS = os.environ.get("AZURE_OPENAI_MAX_TOKENS", 1000)
-OPENAI_STOP_SEQUENCE = os.environ.get("AZURE_OPENAI_STOP_SEQUENCE")
-OPENAI_SYSTEM_MESSAGE = os.environ.get("AZURE_OPENAI_SYSTEM_MESSAGE", "You are an AI assistant that helps people find information.")
-OPENAI_PREVIEW_API_VERSION = os.environ.get("AZURE_OPENAI_PREVIEW_API_VERSION", "2023-08-01-preview")
-OPENAI_STREAM = os.environ.get("AZURE_OPENAI_STREAM", "true")
-OPENAI_MODEL_NAME = os.environ.get("AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo-16k") # Name of the model, e.g. 'gpt-35-turbo-16k' or 'gpt-4'
-OPENAI_EMBEDDING_ENDPOINT = os.environ.get("AZURE_OPENAI_EMBEDDING_ENDPOINT")
-OPENAI_EMBEDDING_KEY = os.environ.get("AZURE_OPENAI_EMBEDDING_KEY")
-OPENAI_EMBEDDING_NAME = os.environ.get("AZURE_OPENAI_EMBEDDING_NAME", "")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL")
+OPENAI_ENDPOINT = os.environ.get("OPENAI_ENDPOINT")
+OPENAI_KEY = os.environ.get("OPENAI_KEY")
+OPENAI_TEMPERATURE = os.environ.get("OPENAI_TEMPERATURE", 0)
+OPENAI_TOP_P = os.environ.get("OPENAI_TOP_P", 1.0)
+OPENAI_MAX_TOKENS = os.environ.get("OPENAI_MAX_TOKENS", 1000)
+OPENAI_STOP_SEQUENCE = os.environ.get("OPENAI_STOP_SEQUENCE")
+OPENAI_SYSTEM_MESSAGE = os.environ.get("OPENAI_SYSTEM_MESSAGE", "You are an AI assistant that helps people find information.")
+OPENAI_PREVIEW_API_VERSION = os.environ.get("OPENAI_PREVIEW_API_VERSION", "2023-08-01-preview")
+OPENAI_STREAM = os.environ.get("OPENAI_STREAM", "true")
+OPENAI_MODEL_NAME = os.environ.get("OPENAI_MODEL_NAME", "gpt-35-turbo-16k") # Name of the model, e.g. 'gpt-35-turbo-16k' or 'gpt-4'
+OPENAI_EMBEDDING_ENDPOINT = os.environ.get("OPENAI_EMBEDDING_ENDPOINT")
+OPENAI_EMBEDDING_KEY = os.environ.get("OPENAI_EMBEDDING_KEY")
+OPENAI_EMBEDDING_NAME = os.environ.get("OPENAI_EMBEDDING_NAME", "")
 
 # CosmosDB Mongo vcore vector db Settings
 AZURE_COSMOSDB_MONGO_VCORE_CONNECTION_STRING = os.environ.get("AZURE_COSMOSDB_MONGO_VCORE_CONNECTION_STRING")  #This has to be secure string
