@@ -799,23 +799,29 @@ def generate_title(conversation_messages):
     messages = [{'role': msg['role'], 'content': msg['content']} for msg in conversation_messages]
     messages.append({'role': 'user', 'content': title_prompt})
 
-    try:
-        ## Submit prompt to Chat Completions for response
-        base_url = OPENAI_ENDPOINT if OPENAI_ENDPOINT else f"https://{OPENAI_RESOURCE}.openai.azure.com/"
-        openai.api_type = "azure"
-        openai.api_base = base_url
-        openai.api_version = "2023-03-15-preview"
-        openai.api_key = OPENAI_KEY
-        completion = openai.ChatCompletion.create(    
-            engine=OPENAI_MODEL,
-            messages=messages,
-            temperature=1,
-            max_tokens=64 
-        )
-        title = json.loads(completion['choices'][0]['message']['content'])['title']
-        return title
-    except Exception as e:
-        return messages[-2]['content']
+   # 対話メッセージ
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Tell me a joke."},
+]
 
+
+try:
+       # OpenAI APIにリクエストを送信
+       openai.api_type = OPENAI_KEY       
+        completion = openai.Completion.create(
+        engine="gpt-4",  # 使用するエンジンを指定
+        messages=messages,
+        temperature=1,
+        max_tokens=64,
+    )
+       
+ # 結果の取得
+    generated_text = completion["choices"][0]["message"]["content"]
+    print(generated_text)
+
+except Exception as e:
+    print(f"Error: {e}")
+    
 if __name__ == "__main__":
     app.run()
